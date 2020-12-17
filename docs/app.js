@@ -43,7 +43,11 @@ $(() => {
             "width" : "5rem",
             "display" : "none"
     })
-    $(".closeResults").html("Close");
+    $(".closeResults").text("Close");
+    $(".closeResults").css({
+        "cursor" : "pointer"
+    })
+
     // add right margin and different BG color styling to every borough div
 
     backgroundColors.forEach((item, index) => {
@@ -101,10 +105,23 @@ $(() => {
                         "display" : "block"
                     })
                     for (let j = 0; j < userInput; j ++) {
-                        $("p").eq(i).append(`${data[j].borough}: Compalint: ${data[j].complaint_type} - ${data[j].descriptor} Rsolution: ${data[j].resolution_description}\n`);
-                        console.log(data[j].borough);
+                        $("p").eq(i).append(`<p>${data[j].borough}: Compalint: ${data[j].complaint_type} - ${data[j].descriptor} <button class=responseButton id=responseButton${j}>police response</button></p>\n`);
+                        $(".responseButton").css({
+                            "text-transform" : "capitalize",
+                            "background-color" : "red",
+                            "cursor" : "pointer"
+                        })
+                        let toggle = true;
+                        $(`#responseButton${j}`).on("click", () => {
+                            if(toggle === true){
+                                $(`#responseButton${j}`).text(` Resolution: ${data[j].resolution_description}`)
+                                toggle = false;
+                            }else {
+                                $(`#responseButton${j}`).text("Police Response")
+                                toggle = true;
+                            }
+                        })
                     }
-                    console.log(data);
                 }) 
             } else /* if ($("input:text").eq(i).val("0") || isNaN(userInput) === true) */ {
                 $.ajax({
@@ -123,10 +140,23 @@ $(() => {
                         "display" : "block"
                     })
                     for (let j = 0; j < DEFAULT_LIMIT; j ++) {
-                        $("p").eq(i).append(`${data[j].borough}: Compalint: ${data[j].complaint_type} - ${data[j].descriptor} Rsolution: ${data[j].resolution_description}\n`);
-                        console.log(data[j].borough);
+                        $("p").eq(i).append(`<p>${data[j].borough}: Compalint: ${data[j].complaint_type} - ${data[j].descriptor} <button class=responseButton id=responseButton${j}>police response</button></p>\n`);
+                        $(".responseButton").css({
+                            "text-transform" : "capitalize",
+                            "background-color" : "red",
+                            "cursor" : "pointer"
+                        })
+                        let toggle = true;
+                        $(`#responseButton${j}`).on("click", () => {
+                            if(toggle === true){
+                                $(`#responseButton${j}`).text(` Resolution: ${data[j].resolution_description}`)
+                                toggle = false;
+                            }else {
+                                $(`#responseButton${j}`).text("Police Response")
+                                toggle = true;
+                            }
+                        })
                     }
-                    console.log(data);
                 });
             }
         })
