@@ -21,6 +21,15 @@ $(() => {
     $("body").css({
     "background-color" : "lightgrey"
     });
+    $(".copyright-spacing").css({
+    "display": "flex",
+    "justify-content": "center"
+    })
+    $(".copyright").css({
+    "font-weight": "bold",
+    "font-size": "16px",
+    "margin": "8px"
+    })
     $("h2").css({
     "font-size" : "2rem",
     "text-transform" : "capitalize"
